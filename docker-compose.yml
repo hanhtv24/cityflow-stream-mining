@@ -1,0 +1,50 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: cityflow
+      POSTGRES_USER: cityflow
+      POSTGRES_PASSWORD: cityflow
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "${CITYFLOW_DB_PORT:-55432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cityflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      CITYFLOW_DATABASE_URL: postgresql+psycopg://cityflow:cityflow@db:5432/cityflow
+      CITYFLOW_DATA_DIR: /app/data
+      PYTHONIOENCODING: utf-8
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      # Dữ liệu thô nằm NGOÀI thư mục dự án (docs/04 — tránh đồng bộ OneDrive).
+      # Ghi đè bằng biến môi trường CITYFLOW_HOST_DATA_DIR nếu khác mặc định.
+      - ${CITYFLOW_HOST_DATA_DIR:-C:/Users/leotran/cityflow_data}:/app/data:ro
+      # Kết quả JSON của E1-E11 — router bench.py đọc trực tiếp từ đây
+      # (config.DOCS_DIR = PROJECT_ROOT/docs, PROJECT_ROOT trong container = /app).
+      - ./docs:/app/docs:ro
+    ports:
+      - "8000:8000"
+
+  web:
+    build:
+      context: ./web
+      dockerfile: ../Dockerfile.web
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:

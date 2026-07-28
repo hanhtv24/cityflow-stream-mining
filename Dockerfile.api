@@ -1,0 +1,27 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Không cần apt-get: psycopg[binary] đóng gói sẵn libpq, không cần biên dịch từ
+# mã nguồn (tránh phụ thuộc gcc/libpq-dev — cũng tránh được sự cố mirror Debian
+# không truy cập được trong một số môi trường mạng hạn chế).
+
+COPY pyproject.toml ./
+COPY src ./src
+
+# CÀI TỪ WHEEL CỤC BỘ, KHÔNG GỌI MẠNG: mạng egress của container trong môi
+# trường build này không ổn định (đã xác nhận qua 4 lần thử — cả apt-get lẫn
+# pip đều timeout/mất kết nối tới PyPI/Debian sau nhiều phút, không phải do
+# thời gian chờ ngắn). Vì `pip install` trên HOST (venv cục bộ) chạy trơn tru,
+# giải pháp là tải sẵn toàn bộ wheel trên host (scripts/download_docker_wheels.py
+# hoặc lệnh pip download tương ứng) rồi cài offline trong image bằng --no-index.
+COPY docker_wheels ./docker_wheels
+RUN pip install --no-cache-dir --no-index --find-links=./docker_wheels -e . \
+    && rm -rf docker_wheels
+
+ENV PYTHONIOENCODING=utf-8 \
+    PYTHONUNBUFFERED=1
+
+EXPOSE 8000
+
+CMD ["uvicorn", "cityflow.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,11 @@
+.venv/
+web/node_modules/
+web/dist/
+data/
+docs/
+notebooks/
+tests/
+.git/
+*.parquet
+__pycache__/
+*.pyc

@@ -1,0 +1,35 @@
+# --- Môi trường Python ---
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# --- Wheel offline cho Docker (regenerate bằng scripts/download_docker_wheels.py) ---
+docker_wheels/
+
+# --- Node / Web ---
+web/node_modules/
+web/dist/
+docs/slides/node_modules/
+
+# --- Dữ liệu thô (tải bằng scripts/download_data.py, không thuộc source) ---
+data/
+*.parquet
+
+# --- Tài liệu gốc của giảng viên & danh sách lớp (không phải sản phẩm của nhóm) ---
+Data_Mining_Course_Master*.pdf
+Nhóm BTL Môn Khai Phá Dữ Liệu.xlsx
+
+# --- File trung gian sinh ra khi build báo cáo Word (không phải nguồn) ---
+docs/bao_cao/BAO_CAO_FULL.md
+docs/bao_cao/convert_log.txt
+
+# --- Thư mục rác còn sót lại từ khi tái cấu trúc (rỗng, OneDrive giữ khóa) ---
+btl/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

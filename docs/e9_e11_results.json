@@ -1,0 +1,248 @@
+{
+  "n_events": 19663928,
+  "discretization": {
+    "70.0": {
+      "n_baskets": 2976,
+      "percentile": 70.0,
+      "mean_basket_size": 66.66969086021506,
+      "median_basket_size": 52.0,
+      "max_basket_size": 211,
+      "empty_baskets": 270,
+      "n_distinct_items": 257
+    },
+    "80.0": {
+      "n_baskets": 2976,
+      "percentile": 80.0,
+      "mean_basket_size": 44.39213709677419,
+      "median_basket_size": 26.0,
+      "max_basket_size": 199,
+      "empty_baskets": 374,
+      "n_distinct_items": 257
+    },
+    "90.0": {
+      "n_baskets": 2976,
+      "percentile": 90.0,
+      "mean_basket_size": 22.128360215053764,
+      "median_basket_size": 8.0,
+      "max_basket_size": 180,
+      "empty_baskets": 539,
+      "n_distinct_items": 257
+    },
+    "95.0": {
+      "n_baskets": 2976,
+      "percentile": 95.0,
+      "mean_basket_size": 10.960349462365592,
+      "median_basket_size": 2.0,
+      "max_basket_size": 148,
+      "empty_baskets": 837,
+      "n_distinct_items": 257
+    }
+  },
+  "E9": {
+    "0.20": {
+      "min_support_ratio": 0.2,
+      "min_support_count": 595,
+      "n_patterns": 0,
+      "fpgrowth_s": 0.010436600000048202,
+      "apriori_s": 0.007150899999999183,
+      "speedup": 0.6851752486409517,
+      "fpgrowth_peak_bytes": 39580,
+      "apriori_peak_bytes": 41716,
+      "candidates": 257,
+      "db_scans": 1,
+      "support_checks": 0
+    },
+    "0.15": {
+      "min_support_ratio": 0.15,
+      "min_support_count": 446,
+      "n_patterns": 0,
+      "fpgrowth_s": 0.010992899999962447,
+      "apriori_s": 0.006551299999955518,
+      "speedup": 0.5959573906774279,
+      "fpgrowth_peak_bytes": 39580,
+      "apriori_peak_bytes": 41724,
+      "candidates": 257,
+      "db_scans": 1,
+      "support_checks": 0
+    },
+    "0.10": {
+      "min_support_ratio": 0.1,
+      "min_support_count": 297,
+      "n_patterns": 11,
+      "fpgrowth_s": 0.018482100000028368,
+      "apriori_s": 0.157104400000037,
+      "speedup": 8.500354396946012,
+      "fpgrowth_peak_bytes": 126780,
+      "apriori_peak_bytes": 61292,
+      "candidates": 312,
+      "db_scans": 2,
+      "support_checks": 163680
+    },
+    "0.07": {
+      "min_support_ratio": 0.07,
+      "min_support_count": 208,
+      "n_patterns": 355,
+      "fpgrowth_s": 0.8680765000000292,
+      "apriori_s": 78.98757319999999,
+      "speedup": 90.99148888375314,
+      "fpgrowth_peak_bytes": 16604170,
+      "apriori_peak_bytes": 8500796,
+      "candidates": 26106,
+      "db_scans": 4,
+      "support_checks": 76926624
+    },
+    "0.05": {
+      "min_support_ratio": 0.05,
+      "min_support_count": 148,
+      "n_patterns": 16319,
+      "fpgrowth_s": 6.276975100000072,
+      "apriori_s": 213.29638610000006,
+      "speedup": 33.98076027097791,
+      "fpgrowth_peak_bytes": 26592592,
+      "apriori_peak_bytes": 40061272,
+      "candidates": 61329,
+      "db_scans": 11,
+      "support_checks": 181750272
+    }
+  },
+  "E11": {
+    "0.15": {
+      "n_all": 0
+    },
+    "0.10": {
+      "n_all": 11,
+      "n_closed": 11,
+      "n_maximal": 11,
+      "closed_ratio": 1.0,
+      "maximal_ratio": 1.0,
+      "lossless": true
+    },
+    "0.07": {
+      "n_all": 355,
+      "n_closed": 355,
+      "n_maximal": 273,
+      "closed_ratio": 1.0,
+      "maximal_ratio": 0.7690140845070422,
+      "lossless": true
+    },
+    "0.05": {
+      "n_all": 16319,
+      "n_closed": 12010,
+      "n_maximal": 3607,
+      "closed_ratio": 0.735951957840554,
+      "maximal_ratio": 0.22103070041056438,
+      "lossless": true
+    }
+  },
+  "n_rules": 484,
+  "E10": {
+    "support": {
+      "values": [
+        0.08904569892473119,
+        0.044522849462365593,
+        0.008095063538611925,
+        0.00088164058341318
+      ],
+      "drift": 0.9900990099009901,
+      "null_invariant": false
+    },
+    "confidence": {
+      "values": [
+        0.8952702702702703,
+        0.8952702702702703,
+        0.8952702702702703,
+        0.8952702702702703
+      ],
+      "drift": 0.0,
+      "null_invariant": false
+    },
+    "lift": {
+      "values": [
+        9.031607879065508,
+        18.063215758131015,
+        99.34768666972056,
+        912.1923957856162
+      ],
+      "drift": 99.99999999999999,
+      "null_invariant": false
+    },
+    "chi_square": {
+      "values": [
+        2333.0284783931083,
+        4729.365017851675,
+        26271.965093567844,
+        241676.23162209944
+      ],
+      "drift": 102.58906196831161,
+      "null_invariant": false
+    },
+    "all_confidence": {
+      "values": [
+        0.8952702702702703,
+        0.8952702702702703,
+        0.8952702702702703,
+        0.8952702702702703
+      ],
+      "drift": 0.0,
+      "null_invariant": true
+    },
+    "coherence": {
+      "values": [
+        0.8128834355828221,
+        0.8128834355828221,
+        0.8128834355828221,
+        0.8128834355828221
+      ],
+      "drift": 0.0,
+      "null_invariant": true
+    },
+    "cosine": {
+      "values": [
+        0.8967863937446292,
+        0.8967863937446292,
+        0.8967863937446292,
+        0.8967863937446292
+      ],
+      "drift": 0.0,
+      "null_invariant": true
+    },
+    "kulczynski": {
+      "values": [
+        0.8967876775080166,
+        0.8967876775080166,
+        0.8967876775080166,
+        0.8967876775080166
+      ],
+      "drift": 0.0,
+      "null_invariant": true
+    },
+    "max_confidence": {
+      "values": [
+        0.8983050847457628,
+        0.8983050847457628,
+        0.8983050847457628,
+        0.8983050847457628
+      ],
+      "drift": 0.0,
+      "null_invariant": true
+    },
+    "imbalance_ratio": {
+      "values": [
+        0.003067484662576687,
+        0.003067484662576687,
+        0.003067484662576687,
+        0.003067484662576687
+      ],
+      "drift": 0.0,
+      "null_invariant": true
+    }
+  },
+  "E10_rank_corr": {
+    "lift__kulczynski": 0.8837342438336693,
+    "confidence__kulczynski": 0.40018331369132065,
+    "lift__cosine": 0.8502204368305994,
+    "kulczynski__cosine": 0.996215186142247,
+    "support__kulczynski": 0.12439686144099171,
+    "chi_square__kulczynski": 0.9982060236328604
+  }
+}

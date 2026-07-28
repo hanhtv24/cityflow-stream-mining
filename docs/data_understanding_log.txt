@@ -1,0 +1,196 @@
+
+==============================================================================
+1. LƯỢC ĐỒ VÀ QUY MÔ
+==============================================================================
+
+  FHVHV: 19,663,930 bản ghi | 472.8 MB | 24 cột
+      hvfhs_license_num            VARCHAR
+      dispatching_base_num         VARCHAR
+      originating_base_num         VARCHAR
+      request_datetime             TIMESTAMP
+      on_scene_datetime            TIMESTAMP
+      pickup_datetime              TIMESTAMP
+      dropoff_datetime             TIMESTAMP
+      PULocationID                 INTEGER
+      DOLocationID                 INTEGER
+      trip_miles                   DOUBLE
+      trip_time                    BIGINT
+      base_passenger_fare          DOUBLE
+      tolls                        DOUBLE
+      bcf                          DOUBLE
+      sales_tax                    DOUBLE
+      congestion_surcharge         DOUBLE
+      airport_fee                  DOUBLE
+      tips                         DOUBLE
+      driver_pay                   DOUBLE
+      shared_request_flag          VARCHAR
+      shared_match_flag            VARCHAR
+      access_a_ride_flag           VARCHAR
+      wav_request_flag             VARCHAR
+      wav_match_flag               VARCHAR
+
+  YELLOW: 2,964,624 bản ghi | 50.0 MB | 19 cột
+      VendorID                     INTEGER
+      tpep_pickup_datetime         TIMESTAMP
+      tpep_dropoff_datetime        TIMESTAMP
+      passenger_count              BIGINT
+      trip_distance                DOUBLE
+      RatecodeID                   BIGINT
+      store_and_fwd_flag           VARCHAR
+      PULocationID                 INTEGER
+      DOLocationID                 INTEGER
+      payment_type                 BIGINT
+      fare_amount                  DOUBLE
+      extra                        DOUBLE
+      mta_tax                      DOUBLE
+      tip_amount                   DOUBLE
+      tolls_amount                 DOUBLE
+      improvement_surcharge        DOUBLE
+      total_amount                 DOUBLE
+      congestion_surcharge         DOUBLE
+      Airport_fee                  DOUBLE
+
+==============================================================================
+2. DANH MỤC KHU VỰC
+==============================================================================
+  Số khu vực: 265
+  Cột: ['LocationID', 'Borough', 'Zone', 'service_zone']
+
+  Phân bố theo Borough:
+      Queens             69
+      Manhattan          69
+      Brooklyn           61
+      Bronx              43
+      Staten Island      20
+      EWR                 1
+      Unknown             1
+      N/A                 1
+
+  Khu vực sân bay (tìm theo tên):
+      LocationID    1  Newark Airport  (EWR)
+      LocationID  132  JFK Airport  (Queens)
+      LocationID  138  LaGuardia Airport  (Queens)
+
+  Khu vực Unknown/N.A.:
+      LocationID    9  Auburndale  (Queens)
+      LocationID   44  Charleston/Tottenville  (Staten Island)
+      LocationID   77  East New York/Pennsylvania Avenue  (Brooklyn)
+      LocationID   84  Eltingville/Annadale/Prince's Bay  (Staten Island)
+      LocationID  102  Glendale  (Queens)
+      LocationID  150  Manhattan Beach  (Brooklyn)
+      LocationID  151  Manhattan Valley  (Manhattan)
+      LocationID  152  Manhattanville  (Manhattan)
+      LocationID  167  Morrisania/Melrose  (Bronx)
+      LocationID  194  Randalls Island  (Manhattan)
+      LocationID  214  South Beach/Dongan Hills  (Staten Island)
+      LocationID  223  Steinway  (Queens)
+      LocationID  254  Williamsbridge/Olinville  (Bronx)
+      LocationID  264  N/A  (Unknown)
+
+==============================================================================
+3. GIÁ TRỊ THIẾU (các cột CityFlow sử dụng)
+==============================================================================
+      pickup_datetime                   0  ( 0.00%)
+      dropoff_datetime                  0  ( 0.00%)
+      PULocationID                      0  ( 0.00%)
+      DOLocationID                      0  ( 0.00%)
+      trip_miles                        0  ( 0.00%)
+      trip_time                         0  ( 0.00%)
+      base_passenger_fare               0  ( 0.00%)
+      tips                              0  ( 0.00%)
+      tolls                             0  ( 0.00%)
+      congestion_surcharge              0  ( 0.00%)
+      shared_request_flag               0  ( 0.00%)
+
+==============================================================================
+4. TÍNH HỢP LỆ
+==============================================================================
+      bad_time_order                2  ( 0.00%)
+      zero_miles                3,286  ( 0.02%)
+      zero_time                     2  ( 0.00%)
+      bad_pu                        0  ( 0.00%)
+      bad_do                        0  ( 0.00%)
+      unknown_pu                  765  ( 0.00%)
+      unknown_do              741,161  ( 3.77%)
+      min_pickup           2024-01-01 00:00:00
+      max_pickup           2024-01-31 23:59:59
+
+==============================================================================
+5. SỰ KIỆN LỆCH THỨ TỰ (ảnh hưởng thiết kế replay)
+==============================================================================
+      Bản ghi lệch thứ tự theo thứ tự file: 8,784,851 (44.67%)
+      -> CẦN sắp xếp lại trước khi replay
+
+==============================================================================
+6. PHÂN PHỐI DOANH THU (chốt tham số m cho DGIM số nguyên)
+==============================================================================
+      min_v                  -36.63
+      max_v                1,961.28
+      mean_v                  26.07
+      p50                     18.76
+      p95                     68.52
+      p99                    123.87
+      p999                   227.42
+      negative_cnt           167.00
+
+      Số bit cần cho p99.9 (227 USD): m = 8
+      Số bit cần cho max   (1961 USD): m = 11
+      -> Khuyến nghị m = 8 kèm kẹp trần (clipping), ghi nhận tỷ lệ bị kẹp
+
+==============================================================================
+7. PHÂN PHỐI THEO KHU VỰC (kiểm tra độ lệch)
+==============================================================================
+      Số khu vực đón phân biệt: 262
+      Top 10 khu vực đón:
+           132 JFK Airport                          374,293  ( 1.90%)
+           138 LaGuardia Airport                    345,116  ( 1.76%)
+            79 East Village                         269,982  ( 1.37%)
+            61 Crown Heights North                  256,556  ( 1.30%)
+           230 Times Sq/Theatre District            246,353  ( 1.25%)
+           161 Midtown Center                       242,893  ( 1.24%)
+           231 TriBeCa/Civic Center                 232,205  ( 1.18%)
+            68 East Chelsea                         219,684  ( 1.12%)
+           246 West Chelsea/Hudson Yards            218,496  ( 1.11%)
+           234 Union Sq                             218,090  ( 1.11%)
+
+      Top 10 chiếm 13.3% tổng số chuyến
+      -> Phân phối tương đối đều
+
+==============================================================================
+8. TÍNH PHI DỪNG (phân phối theo giờ trong ngày)
+==============================================================================
+      Giờ cao điểm nhất: 18h  1,217,661 chuyến
+      Giờ thấp nhất:      4h    295,770 chuyến
+      Tỷ lệ cao/thấp: 4.1x  -> xác nhận luồng PHI DỪNG (slide tr.7)
+          00h   697,067 ##################################
+          01h   492,869 ########################
+          02h   368,463 ##################
+          03h   296,869 ##############
+          04h   295,770 ##############
+          05h   344,232 ################
+          06h   548,915 ###########################
+          07h   863,545 ##########################################
+          08h 1,040,792 ###################################################
+          09h   915,835 #############################################
+          10h   820,397 ########################################
+          11h   806,770 #######################################
+          12h   832,440 #########################################
+          13h   867,183 ##########################################
+          14h   957,194 ###############################################
+          15h   983,663 ################################################
+          16h 1,018,763 ##################################################
+          17h 1,169,233 #########################################################
+          18h 1,217,661 ############################################################
+          19h 1,156,888 #########################################################
+          20h 1,059,668 ####################################################
+          21h 1,016,300 ##################################################
+          22h 1,001,910 #################################################
+          23h   891,503 ###########################################
+
+==============================================================================
+9. SỐ TUYẾN PHÂN BIỆT (ground truth cho Flajolet-Martin)
+==============================================================================
+      Số cặp (đón, trả) phân biệt: 58,911  (tối đa lý thuyết 265^2 = 70,225)
+
+
+Kết quả đã lưu: C:\Users\leotran\OneDrive\Desktop\ThS_PTIT_HTTT\Ky2\khai_pha_du_lieu\btl\docs\data_understanding_results.json

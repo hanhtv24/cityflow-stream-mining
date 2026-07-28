@@ -1,0 +1,116 @@
+Nạp dữ liệu...
+  19,663,928 sự kiện
+
+==============================================================================
+RỜI RẠC HÓA — ẢNH HƯỞNG CỦA NGƯỠNG PHÂN VỊ
+==============================================================================
+   Phân vị    #giỏ   Cỡ giỏ TB   Cỡ giỏ max   #item   Giỏ rỗng
+  --------------------------------------------------------------
+       70%   2,976        66.7          211     257        270
+       80%   2,976        44.4          199     257        374
+       90%   2,976        22.1          180     257        539
+       95%   2,976        11.0          148     257        837
+
+  ⚠️  Đổi từ phân vị 80 (Phase 4) sang phân vị 90 cho thực nghiệm sau.
+  Lý do: ở phân vị 80, cỡ giỏ TB=44,4/257 item -> CSDL quá trù mật,
+  FP-Growth không hội tụ ở min_sup thấp (xem docs/09_KET_QUA_MINING.md §1).
+  Phân vị 90: 2,976 giỏ hàng, cỡ giỏ TB=22.1
+
+==============================================================================
+E9 — FP-GROWTH vs APRIORI  (3 điểm nghẽn slide tr.19)
+==============================================================================
+    min_sup     #mẫu    FP-Growth      Apriori   Tăng tốc    #ứng viên  #quét CSDL
+  --------------------------------------------------------------------------------
+       20%        0       0.010s       0.007s       0.7x          257           1
+       15%        0       0.011s       0.007s       0.6x          257           1
+       10%       11       0.018s       0.157s       8.5x          312           2
+        7%      355       0.868s      78.988s      91.0x       26,106           4
+        5%   16,319       6.277s     213.296s      34.0x       61,329          11
+
+  (khẳng định: cả hai thuật toán cho kết quả GIỐNG HỆT ở mọi mức)
+
+  Tại min_sup=5%: Apriori sinh 61,329 ứng viên cho 16,319 mẫu thật
+                  (3.8 ứng viên/mẫu — điểm nghẽn 2)
+                  181,750,272 phép kiểm tra hỗ trợ — điểm nghẽn 3
+                  bộ nhớ đỉnh: FP-Growth 26.6 MB vs Apriori 40.1 MB
+
+==============================================================================
+E11 — NÉN MẪU  (closed / maximal, slide tr.13)
+==============================================================================
+    min_sup    #tất cả     #đóng   #cực đại   tỷ lệ đóng   tỷ lệ cực đại   không mất mát
+  ------------------------------------------------------------------------------------
+       15%              (không có mẫu thường xuyên ở mức này)
+       10%         11        11         11      100.0%         100.0%             ĐẠT
+        7%        355       355        273      100.0%          76.9%             ĐẠT
+        5%     16,319    12,010      3,607       73.6%          22.1%             ĐẠT
+
+==============================================================================
+SINH LUẬT VÀ XẾP HẠNG
+==============================================================================
+  min_sup=7% (208 giỏ), min_conf=50%  ->  484 luật
+
+  10 luật hàng đầu theo KULCZYNSKI:
+      Midtown Center  =>  Midtown East
+          sup=0.089 conf=0.895 lift=9.03 kulc=0.897 IR=0.003
+      Midtown East  =>  Midtown Center
+          sup=0.089 conf=0.898 lift=9.03 kulc=0.897 IR=0.003
+      East Village + Williamsburg (North Side)  =>  Bushwick South + Williamsburg (South Side)
+          sup=0.071 conf=0.875 lift=11.27 kulc=0.892 IR=0.034
+      Bushwick South + Williamsburg (South Side)  =>  East Village + Williamsburg (North Side)
+          sup=0.071 conf=0.909 lift=11.27 kulc=0.892 IR=0.034
+      Bushwick North + Greenwich Village South  =>  East Village + Lower East Side
+          sup=0.071 conf=0.951 lift=10.92 kulc=0.885 IR=0.133
+      East Village + Lower East Side  =>  Bushwick North + Greenwich Village South
+          sup=0.071 conf=0.819 lift=10.92 kulc=0.885 IR=0.133
+      Bushwick South + Williamsburg (North Side)  =>  East Village + Williamsburg (South Side)
+          sup=0.071 conf=0.905 lift=11.04 kulc=0.883 IR=0.045
+      East Village + Williamsburg (South Side)  =>  Bushwick South + Williamsburg (North Side)
+          sup=0.071 conf=0.861 lift=11.04 kulc=0.883 IR=0.045
+      Williamsburg (North Side) + Williamsburg (South Side)  =>  Bushwick South + East Village
+          sup=0.071 conf=0.901 lift=11.04 kulc=0.883 IR=0.038
+      Bushwick South + East Village  =>  Williamsburg (North Side) + Williamsburg (South Side)
+          sup=0.071 conf=0.864 lift=11.04 kulc=0.883 IR=0.038
+
+==============================================================================
+⭐ E10 — ĐỘ NHẠY VỚI GIAO DỊCH RỖNG TRÊN DỮ LIỆU THẬT
+==============================================================================
+  Thêm dần giao dịch rỗng (cửa sổ không có khu vực nào trong luật hot)
+  và quan sát giá trị các độ đo.
+
+  Luật khảo sát: Midtown Center  =>  Midtown East
+  n=2,976  sup_A=296  sup_B=295  sup_AB=265
+  Giao dịch rỗng sẵn có: 2,650
+
+  Độ đo                         +0         +2976        +29760       +297600   Biến thiên
+  ----------------------------------------------------------------------------------------
+  support                   0.0890        0.0445        0.0081        0.0009       99.0%  TRÔI
+  confidence                0.8953        0.8953        0.8953        0.8953        0.0%  TRÔI
+  lift                      9.0316       18.0632       99.3477      912.1924    10000.0%  TRÔI
+  chi_square             2333.0285     4729.3650    26271.9651   241676.2316    10258.9%  TRÔI
+  all_confidence            0.8953        0.8953        0.8953        0.8953        0.0%  BẤT BIẾN
+  coherence                 0.8129        0.8129        0.8129        0.8129        0.0%  BẤT BIẾN
+  cosine                    0.8968        0.8968        0.8968        0.8968        0.0%  BẤT BIẾN
+  kulczynski                0.8968        0.8968        0.8968        0.8968        0.0%  BẤT BIẾN
+  max_confidence            0.8983        0.8983        0.8983        0.8983        0.0%  BẤT BIẾN
+  imbalance_ratio           0.0031        0.0031        0.0031        0.0031        0.0%  BẤT BIẾN
+
+  Biến thiên lớn nhất trong nhóm BẤT BIẾN     : 0.00e+00
+  Biến thiên lớn nhất trong nhóm KHÔNG bất biến: 10258.9%
+
+  Tương quan hạng Spearman giữa các độ đo (trên toàn bộ tập luật):
+      lift         vs kulczynski   rho = +0.884
+      confidence   vs kulczynski   rho = +0.400
+      lift         vs cosine       rho = +0.850
+      kulczynski   vs cosine       rho = +0.996
+      support      vs kulczynski   rho = +0.124
+      chi_square   vs kulczynski   rho = +0.998
+
+  10 luật hàng đầu theo LIFT (so với bảng Kulczynski ở trên):
+      lift=11.27 kulc=0.892  East Village + Williamsburg (North Side) => Bushwick South + Williamsburg (South Side)
+      lift=11.27 kulc=0.892  Bushwick South + Williamsburg (South Side) => East Village + Williamsburg (North Side)
+      lift=11.04 kulc=0.883  Bushwick South + Williamsburg (North Side) => East Village + Williamsburg (South Side)
+      lift=11.04 kulc=0.883  East Village + Williamsburg (South Side) => Bushwick South + Williamsburg (North Side)
+      lift=11.04 kulc=0.883  Williamsburg (North Side) + Williamsburg (South Side) => Bushwick South + East Village
+
+
+Kết quả đã lưu: C:\Users\leotran\OneDrive\Desktop\ThS_PTIT_HTTT\Ky2\khai_pha_du_lieu\btl\docs\e9_e11_results.json

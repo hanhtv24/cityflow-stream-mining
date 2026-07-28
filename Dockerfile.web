@@ -1,0 +1,15 @@
+# Xây dashboard React trước khi phục vụ qua nginx.
+# Cấu trúc web/ được tạo ở bước "Xây Dashboard web" — file này chạy được ngay khi
+# web/package.json tồn tại với script "build" xuất ra web/dist.
+
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80

@@ -1,0 +1,32 @@
+{
+  "n_events": 3000000,
+  "N_window": 1000000,
+  "E7a": {
+    "elapsed_s": 34.11700669999118,
+    "throughput": 87932.68490347295,
+    "total_buckets": 39613,
+    "memory": {
+      "pu_zones": 2690856,
+      "do_zones": 2717220,
+      "predicates": 80088,
+      "revenue": 139112,
+      "routes": 20616,
+      "ams": 12008,
+      "reservoir": 6400984,
+      "total": 12060884,
+      "total_without_reservoir": 5659900
+    },
+    "full_window_bytes": 66875000.0,
+    "saving_ratio": 11.815579780561494
+  },
+  "E7b": {
+    "lazy_s": 0.0741176000010455,
+    "naive_s_extrapolated": 3.8676439999835566,
+    "speedup": 52.18253154350653
+  },
+  "E7c": {
+    "mean_rel_error": 0.013902664678202609,
+    "max_rel_error": 0.030894478655672686,
+    "revenue_rel_error": 0.008215778525645362
+  }
+}
