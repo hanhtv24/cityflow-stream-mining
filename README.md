@@ -144,9 +144,6 @@ Sơ đồ tổng hợp mà slide tr.40 khuyến nghị chệch lên có hệ th�
 
 | Tài liệu | Nội dung |
 |---|---|
-| [`00_KNOWLEDGE_BASE.md`](docs/00_KNOWLEDGE_BASE.md) | Kiến thức môn học, thuật toán, tín hiệu chấm điểm |
-| [`01_PHAN_TICH_DE_TAI_CAC_NHOM.md`](docs/01_PHAN_TICH_DE_TAI_CAC_NHOM.md) | Phân tích 16 đề tài, khoảng trống nghiên cứu |
-| [`02_DE_XUAT_DE_TAI.md`](docs/02_DE_XUAT_DE_TAI.md) | 16 đề xuất, chấm theo 8 tiêu chí |
 | [`03_THIET_KE_KIEN_TRUC.md`](docs/03_THIET_KE_KIEN_TRUC.md) | Kiến trúc 7 tầng, CRISP-DM, ma trận thực nghiệm |
 | [`04_DATA_UNDERSTANDING.md`](docs/04_DATA_UNDERSTANDING.md) | Xác minh dữ liệu, 3 giả định sai đã sửa |
 | [`05_KET_QUA_E1_E3.md`](docs/05_KET_QUA_E1_E3.md) | DGIM — cận 50%, quan hệ $O(1/r)$, bộ nhớ |

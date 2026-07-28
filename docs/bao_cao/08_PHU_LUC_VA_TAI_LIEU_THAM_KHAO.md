@@ -19,7 +19,7 @@ btl/
 ├── web/                      Dashboard React + Vite + Tailwind
 ├── sql/init.sql              Lược đồ PostgreSQL
 ├── docker-compose.yml        Triển khai 3 dịch vụ: db, api, web
-└── docs/                     Toàn bộ tài liệu Phase 1–8
+└── docs/                     Toàn bộ tài liệu thiết kế và kết quả thực nghiệm
 ```
 
 ## Phụ lục B. Bảng tra cứu tham số đã chốt qua thực nghiệm

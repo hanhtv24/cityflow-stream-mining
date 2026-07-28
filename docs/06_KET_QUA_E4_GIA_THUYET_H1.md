@@ -33,7 +33,7 @@ Slide tr.66 nêu cách mở rộng DGIM để ước lượng **tổng** các s�
 
 Nhưng sai số của mỗi luồng bit được nhân với trọng số $2^i$ rất khác nhau — chênh 128 lần giữa bit 0 và bit 7. Phân bổ đều khó có thể tối ưu.
 
-*(Không nhóm nào trong 16 nhóm còn lại dùng phần mở rộng này — xem [01_PHAN_TICH_DE_TAI_CAC_NHOM.md §6.1](01_PHAN_TICH_DE_TAI_CAC_NHOM.md).)*
+*(Đây là phần mở rộng ít được khai thác trong thực tế — tài liệu giảng dạy chỉ nêu công thức mà không đi sâu vào chiến lược phân bổ tham số.)*
 
 ---
 

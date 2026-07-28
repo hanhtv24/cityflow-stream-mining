@@ -180,7 +180,7 @@ Sáu độ đo bất biến giữ **chính xác tuyệt đối** tới chữ s�
 | Sai lệch từ-scratch vs thư viện = 0 | Phase 4 §1.4 | ✅ (E12, 20/20 test) |
 | FP-Growth cho kết quả giống Apriori | Nguyên tắc kiểm chứng chéo | ✅ (khẳng định trực tiếp trong E9) |
 | Đủ 6 pha CRISP-DM — Modeling | Phase 4 §14.1 | ✅ |
-| Chứng minh null-invariance bằng dữ liệu thật | Tín hiệu chấm điểm #4 (Phase 1) | ✅✅ **Vượt kỳ vọng** — biến thiên đúng 0% |
+| Chứng minh null-invariance bằng dữ liệu thật | Tín hiệu chấm điểm #4 | ✅✅ **Vượt kỳ vọng** — biến thiên đúng 0% |
 | Tầng khai phá mẫu là bắt buộc, không tùy chọn | Phase 4 §5, §13 (R3) | ✅ — luật tìm được mang ý nghĩa địa lý xác thực |
 
 ---

@@ -1,6 +1,6 @@
 # CHECKLIST ĐỐI CHIẾU YÊU CẦU ĐỒ ÁN
 
-*(Không có rubric chấm điểm chính thức được cung cấp — checklist này đối chiếu với toàn bộ yêu cầu nêu trong ROLE ban đầu và 8 tiêu chí chọn đề tài đã chốt ở Phase 3.)*
+*(Không có rubric chấm điểm chính thức được cung cấp — checklist này đối chiếu với yêu cầu chung của bài tập lớn và 8 tiêu chí đánh giá nhóm đã tự đặt ra khi chọn đề tài, xem Chương 3.)*
 
 ## A. Yêu cầu sản phẩm
 
@@ -28,7 +28,7 @@
 | Evaluation | ✅ | Chương 5 báo cáo, 12 thực nghiệm E1–E12 |
 | Deployment | ✅ | API + CSDL + Web đã đóng gói Docker, kiểm chứng `docker compose up` chạy đủ và đúng dữ liệu thật |
 
-## C. Yêu cầu Machine Learning (ROLE)
+## C. Yêu cầu Machine Learning
 
 | Yêu cầu | Đáp ứng | Ghi chú |
 |---|:---:|---|
@@ -41,7 +41,7 @@
 | Confusion Matrix / ROC / AUC | ❌ N/A | Không áp dụng — không phải bài toán phân loại |
 | Precision / Recall / F1 | Thay thế | Sai số tương đối, độ chệch, hệ số biến thiên — đúng bộ độ đo cho bài toán ước lượng luồng |
 
-**Giải thích việc không áp dụng nhóm ML cổ điển:** đề tài thuộc phạm trù *stream mining* và *frequent pattern mining* (MMDS), không phải học có giám sát. Áp đặt Cross-Validation/ROC/SHAP vào bài toán này sẽ gượng ép và sai bản chất — đã nêu rõ giới hạn này ngay từ Phase 1 (Knowledge Base) và nhất quán xuyên suốt toàn bộ đồ án.
+**Giải thích việc không áp dụng nhóm ML cổ điển:** đề tài thuộc phạm trù *stream mining* và *frequent pattern mining* (MMDS), không phải học có giám sát. Áp đặt Cross-Validation/ROC/SHAP vào bài toán này sẽ gượng ép và sai bản chất — giới hạn này được nêu rõ và nhất quán xuyên suốt toàn bộ đồ án.
 
 ## D. Yêu cầu tài liệu luận văn
 
@@ -62,7 +62,7 @@
 | Slide bảo vệ | ✅ | `slides/CityFlow_Slide_Bao_Ve.pptx`, 17 trang |
 | Script demo | ✅ | `bao_cao/09_SCRIPT_DEMO.md` |
 
-## E. Tám tiêu chí chọn đề tài (Phase 3) — đối chiếu cuối kỳ
+## E. Tám tiêu chí chọn đề tài — đối chiếu cuối kỳ
 
 | Tiêu chí | Đạt | Bằng chứng |
 |---|:---:|---|

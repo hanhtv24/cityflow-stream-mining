@@ -1,22 +1,23 @@
 # CHƯƠNG 3. PHÂN TÍCH BÀI TOÁN
 
-*(Chương này tương ứng hai pha đầu của CRISP-DM: Business Understanding và Data Understanding. Nội dung tổng hợp từ tài liệu Phase 1–5 của nhóm, dẫn nguồn cụ thể ở mỗi mục.)*
+*(Chương này tương ứng hai pha đầu của CRISP-DM: Business Understanding và Data Understanding.)*
 
 ## 3.1. Quy trình lựa chọn đề tài
 
-### 3.1.1. Phân tích cạnh tranh với các nhóm cùng lớp
+### 3.1.1. Khảo sát khoảng trống nghiên cứu
 
-Trước khi chọn đề tài, nhóm đã phân tích toàn bộ 16 đề tài đã đăng ký của các nhóm khác trong lớp (chi tiết: [`01_PHAN_TICH_DE_TAI_CAC_NHOM.md`](../01_PHAN_TICH_DE_TAI_CAC_NHOM.md)). Ba kết luận chính:
+Trước khi chọn đề tài, nhóm rà soát nội dung chương trình môn học để xác định những kỹ thuật quan trọng nhưng ít được khai thác trong các đồ án thông thường. Hai khoảng trống nổi bật:
 
-**Bốn cặp đề tài trùng lặp đáng kể** đã tồn tại trước khi nhóm 15 đăng ký: hai nhóm cùng làm luật kết hợp trên dữ liệu bán lẻ (trùng gần như hoàn toàn), hai nhóm cùng làm phát hiện gần trùng lặp bằng Shingling/MinHash/LSH, hai nhóm cùng dùng Bloom Filter cho lọc tốc độ cao.
+- **DGIM (cửa sổ trượt)** chiếm khoảng 22% nội dung chương Data Streaming nhưng hiếm khi được chọn làm thuật toán lõi cho một hệ thống hoàn chỉnh, do yêu cầu thiết kế kiến trúc nhiều luồng đồng thời tương đối phức tạp.
+- **Các độ đo tương quan bất biến với giao dịch rỗng** (All-Confidence, Coherence, Cosine, Kulczynski, Max-Confidence) chiếm khoảng 10% nội dung chương Frequent Patterns nhưng thường bị bỏ qua để dùng support/confidence đơn giản hơn.
 
-**Sáu lỗi phương pháp luận** được quan sát ở các đề tài khác: ép thuật toán vào bài toán nó không giải được (luật kết hợp dùng cho dự báo dịch bệnh — luật kết hợp mô tả đồng xuất hiện, không có khái niệm độ trễ thời gian); chọn dữ liệu quá nhỏ cho thuật toán xấp xỉ (mất đi lý do tồn tại của xấp xỉ); tên đề tài hứa nhiều hơn khả năng công cụ; đề tài thuần benchmark thiếu bối cảnh nghiệp vụ; bỏ qua nội dung môn học để làm thị giác máy tính thuần túy.
-
-**Khoảng trống khai thác được:** DGIM (chiếm 22% nội dung chương Data Streaming) không nhóm nào sử dụng làm thuật toán lõi; các độ đo tương quan bất biến với giao dịch rỗng (10% nội dung chương Frequent Patterns) không nhóm nào nêu tên; không nhóm nào kết hợp từ hai chương nội dung trở lên thành một hệ thống thống nhất.
+Nhóm cũng nhận thấy phần lớn đồ án trong lớp chỉ khai thác **một** chương nội dung độc lập (hoặc Frequent Pattern Mining, hoặc Data Streaming, hoặc Finding Similar Items), trong khi việc kết hợp nhiều chương thành một hệ thống thống nhất — vừa xử lý luồng thời gian thực, vừa khai phá mẫu trên lịch sử tích lũy — là một hướng ít được thử nghiệm và có giá trị kỹ thuật cao hơn.
 
 ### 3.1.2. Tiêu chí lựa chọn và quyết định
 
-Từ phân tích trên, nhóm xây dựng tám tiêu chí đánh giá (chi tiết: [`02_DE_XUAT_DE_TAI.md`](../02_DE_XUAT_DE_TAI.md)) và đề xuất 16 phương án đề tài. Đề tài **CityFlow** được chọn vì đạt điểm cao nhất (15/16) theo các tiêu chí: khai thác khoảng trống DGIM, có ground truth hoàn hảo để đo sai số (giá trị chính xác tính được offline), dữ liệu đủ lớn để phù hợp tinh thần bài toán luồng, và có tiềm năng kết hợp cả hai lớp bài toán (cửa sổ trượt và khai phá mẫu).
+Từ khảo sát trên, nhóm xây dựng một bộ tiêu chí đánh giá gồm: (1) lõi thuật toán bám sát nội dung môn học, (2) có ground truth định lượng để đo sai số, (3) quy mô dữ liệu đủ lớn để thể hiện đúng tinh thần bài toán luồng, (4) khả năng kết hợp nhiều lớp bài toán thành một hệ thống thống nhất, (5) khả năng triển khai thành sản phẩm hoàn chỉnh.
+
+Đề tài **CityFlow** được chọn vì đáp ứng đầy đủ các tiêu chí trên: khai thác khoảng trống DGIM, có ground truth hoàn hảo để đo sai số (giá trị chính xác tính được offline từ dữ liệu lịch sử), dữ liệu đủ lớn (hàng chục triệu bản ghi/tháng) để phù hợp tinh thần bài toán luồng, và có tiềm năng kết hợp cả hai lớp bài toán (cửa sổ trượt và khai phá mẫu) thành một hệ thống giám sát giao thông đô thị hoàn chỉnh.
 
 ## 3.2. Nguồn dữ liệu
 

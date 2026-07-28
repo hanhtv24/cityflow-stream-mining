@@ -43,7 +43,7 @@ Trung tâm điều hành giao thông của một đô thị lớn nhận **luồ
 
 ### 1.2. Vì sao KHÔNG tính chính xác?
 
-Đây là câu hỏi đầu tiên mọi phản biện sẽ đặt ra, và là chỗ nhóm 7 thất bại. Ba lý do định lượng:
+Đây là câu hỏi đầu tiên mọi phản biện sẽ đặt ra. Ba lý do định lượng:
 
 | Lý do | Phân tích |
 |---|---|
@@ -51,7 +51,7 @@ Trung tâm điều hành giao thông của một đô thị lớn nhận **luồ
 | **Số luồng đồng thời** | Không phải 1 luồng mà 265 (khu vực) × nhiều vị từ. Chi phí nhân lên tuyến tính — đúng lập luận GV nêu ở tr.53. |
 | **Tính vô hạn** | Luồng thực tế không kết thúc. Mọi cấu trúc $O(N)$ đều sụp đổ theo thời gian. |
 
-**Cam kết trung thực:** dữ liệu NYC TLC là **dữ liệu lịch sử được phát lại (replay)**, không phải luồng trực tuyến thật. Báo cáo sẽ **nêu rõ điều này** như một giới hạn, kèm luận cứ: bài toán và ràng buộc bộ nhớ là thật (265 luồng × $10^6$ cửa sổ), chỉ nguồn phát là mô phỏng. Không được che giấu — đây là chỗ nhóm 7 sẽ bị chất vấn.
+**Cam kết trung thực:** dữ liệu NYC TLC là **dữ liệu lịch sử được phát lại (replay)**, không phải luồng trực tuyến thật. Báo cáo sẽ **nêu rõ điều này** như một giới hạn, kèm luận cứ: bài toán và ràng buộc bộ nhớ là thật (265 luồng × $10^6$ cửa sổ), chỉ nguồn phát là mô phỏng. Không được che giấu — đây là điểm phản biện dễ bị chất vấn nhất nếu không chủ động nêu trước.
 
 ### 1.3. Sáu câu hỏi nghiệp vụ hệ thống phải trả lời
 
@@ -64,7 +64,7 @@ Trung tâm điều hành giao thông của một đô thị lớn nhận **luồ
 | **Q5** | Giữ được mẫu đại diện nào để phân tích sâu mà không lưu toàn bộ luồng? | **Reservoir Sampling** | Lấy mẫu |
 | **Q6** | **Những khu vực nào thường xuyên ùn tắc CÙNG NHAU?** Nếu A và B đang ùn tắc thì C có nguy cơ không? | **FP-Growth + độ đo null-invariant** | Khai phá mẫu & luật |
 
-> 🔴 **Q6 là tầng bắt buộc, không được cắt.** Nó là câu trả lời cho phản biện *"đây là truy vấn xấp xỉ hay khai phá dữ liệu?"* — đúng lời phê tôi đã dành cho nhóm 14 ở Phase 2. Q1–Q5 là hạ tầng sketch; **Q6 mới là khai phá dữ liệu**.
+> 🔴 **Q6 là tầng bắt buộc, không được cắt.** Nó là câu trả lời cho phản biện *"đây là truy vấn xấp xỉ hay khai phá dữ liệu?"*. Q1–Q5 là hạ tầng sketch; **Q6 mới là khai phá dữ liệu**.
 
 ### 1.4. Tiêu chí thành công
 
@@ -584,7 +584,7 @@ CREATE TABLE benchmark_results (
 ## 8. THIẾT KẾ GIAO DIỆN
 
 **Công nghệ:** React + Vite + TailwindCSS + Plotly.js + react-leaflet
-*(ROLE liệt kê React/Tailwind; Vite nhẹ hơn Next.js và không cần SSR cho ứng dụng nội bộ. **Phương án dự phòng nếu thiếu thời gian: Streamlit** — chấp nhận UI kém hơn để đảm bảo có sản phẩm chạy được.)*
+*(Yêu cầu ban đầu ưu tiên React/Tailwind; Vite nhẹ hơn Next.js và không cần SSR cho ứng dụng nội bộ. **Phương án dự phòng nếu thiếu thời gian: Streamlit** — chấp nhận UI kém hơn để đảm bảo có sản phẩm chạy được.)*
 
 ### Bốn màn hình
 
@@ -704,7 +704,7 @@ cityflow/
 │   ├── test_interestingness.py    # tái hiện ví dụ basketball/cereal tr.36
 │   └── test_crosscheck.py
 │
-└── docs/                          # tài liệu Phase 1–8
+└── docs/                          # tài liệu thiết kế và kết quả thực nghiệm
 ```
 
 > 📌 Thư mục `tests/` được thiết kế để **mỗi ví dụ số trong slide đều trở thành một unit test**. Đây vừa là kiểm định tính đúng đắn, vừa là bằng chứng trực tiếp trong báo cáo rằng nhóm hiểu bài giảng.
@@ -823,7 +823,7 @@ volumes: {pgdata: {}}
 
 ## 14. CHECKLIST ĐỐI CHIẾU
 
-### 14.1. Với 8 tiêu chí chọn đề tài (Phase 2)
+### 14.1. Với 8 tiêu chí chọn đề tài
 
 | | Tiêu chí | Đáp ứng |
 |:--:|---|---|
@@ -836,7 +836,7 @@ volumes: {pgdata: {}}
 | C7 | Khai thác ≥2 khoảng trống | ✅ **G1** (DGIM) · **G6** (null-invariant) · **G3/M5** (nén pattern) · **M3** (lý thuyết vs thực nghiệm) · **M4** (from scratch) |
 | C8 | Sản phẩm chạy được | ✅ API + Dashboard + PostgreSQL + Docker một lệnh |
 
-### 14.2. Với 3 tín hiệu chấm điểm của giảng viên (Phase 1 §7)
+### 14.2. Với 3 tín hiệu chấm điểm của giảng viên
 
 | Tín hiệu | Đáp ứng |
 |---|---|
@@ -844,7 +844,7 @@ volumes: {pgdata: {}}
 | **#3 Tinh chỉnh tham số + lý thuyết vs thực nghiệm** | **Toàn bộ §10** — 12 thực nghiệm, mỗi thực nghiệm đối chiếu một công thức trong slide. Trường `theoretical_bound` có trong mọi phản hồi API |
 | **#4 Độ đo null-invariant** | 10 độ đo cài đặt đầy đủ (§5.3) · **E10 chứng minh trên dữ liệu thật** · Màn hình Pattern Explorer cho phép đảo thứ hạng trực tiếp trước hội đồng |
 
-### 14.3. Với yêu cầu sản phẩm của ROLE
+### 14.3. Với yêu cầu sản phẩm của đồ án
 
 | Yêu cầu | Đáp ứng |
 |---|---|
@@ -861,7 +861,7 @@ volumes: {pgdata: {}}
 
 1. **Ánh xạ 535 luồng bit + lazy expiration** (§4.1) — biến bài toán thành đúng kịch bản "nhiều luồng đồng thời" của slide tr.53, và giải quyết được vấn đề hiệu năng mà cách làm ngây thơ sẽ vấp phải.
 
-2. **Tầng khai phá mẫu (Q6) là bắt buộc, không phải tùy chọn** (§5) — đây là lá chắn trước phản biện *"đâu là phần khai phá dữ liệu?"*, đúng lời phê tôi đã dành cho nhóm 14.
+2. **Tầng khai phá mẫu (Q6) là bắt buộc, không phải tùy chọn** (§5) — đây là lá chắn trước phản biện *"đâu là phần khai phá dữ liệu?"*.
 
 3. **Rời rạc hóa "hot" bằng phân vị theo từng khu vực** (§5.1) — nếu dùng ngưỡng tuyệt đối, toàn bộ tầng khai phá sẽ cho kết quả tầm thường ("Manhattan luôn bận"). Chi tiết nhỏ này quyết định tầng L3 có giá trị hay vô nghĩa.
 
